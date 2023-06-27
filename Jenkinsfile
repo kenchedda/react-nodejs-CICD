@@ -27,11 +27,6 @@ spec:
 
         stage ('Checkout SCM'){
           git credentialsId: 'github', url: 'https://github.com/kenchedda/react-nodejs-CICD.git', branch: 'main'
-          container('build') {
-                stage('Build a React Webapp') {
-                    sh 'CI=false npm run build'             
-                }
-            }
         }
          stage ('Docker Build'){
           container('build') {
