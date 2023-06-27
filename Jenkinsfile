@@ -33,7 +33,7 @@ spec:
                 }
             }
         }
-        stage ('Docker Build'){
+         stage ('Docker Build'){
           container('build') {
                 stage('Build Image') {
                     docker.withRegistry( 'https://registry.hub.docker.com', 'docker' ) {
