@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-	baseURL: 'http://app.edshopper.com:5555',
+	baseURL: 'http://dev-gateway.edshopper.com:80',
 });

@@ -7,7 +7,6 @@ const ORDER_URL = '/v1/order'
 const Payment = (props) => {
   const location = useLocation()
   const navigate = useNavigate()
-  console.log('state', location.state);
   const [payment = { cardHolder: '', cardNumber: '', validation: '', cvv: '' }, setPayment] = useState();
   const [upi, setUPI] = useState()
   const [modeValue, setModeValue] = useState('Select Mode')
@@ -19,7 +18,6 @@ const Payment = (props) => {
   const onPayment = async (event) => {
     try {
       event.preventDefault()
-      console.log('payment', payment);
       // navigate('/order',{state:{paymentid:1}})
       let kartId = JSON.parse(localStorage.getItem('cartId'))
       let user = JSON.parse(localStorage.getItem('user'));
@@ -40,7 +38,7 @@ const Payment = (props) => {
         }
         let response = await axios.post(ORDER_URL, orderdata, null);
         if (response) {
-          navigate('/success');
+          navigate('/success',{state:{orderData:response?.data}});
         }
       }
       
@@ -67,7 +65,7 @@ const Payment = (props) => {
         }
         let response = await axios.post(ORDER_URL, orderdata, null);
         if (response) {
-          navigate('/success');
+          navigate('/success',{state:{orderData:response?.data}});
         }
       }
     } catch (error) {
@@ -91,7 +89,7 @@ const Payment = (props) => {
         }
         let response = await axios.post(ORDER_URL, orderdata, null);
         if (response) {
-          navigate('/success');
+          navigate('/success',{state:{orderData:response?.data}});
         }
       }
       
@@ -153,3 +151,4 @@ const Payment = (props) => {
 }
 
 export default Payment
+
