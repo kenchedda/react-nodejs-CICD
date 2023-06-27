@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
   - name: build
-    image: dpthub/dpt7-jenkins-agent
+    image: kenappiah/buildagent:latest
     command:
     - cat
     tty: true
@@ -26,7 +26,7 @@ spec:
     node (label) {
 
         stage ('Checkout SCM'){
-          git credentialsId: 'git', url: 'https://dptrealtime@bitbucket.org/dptrealtime/eos-react-webapp.git', branch: 'master'
+          git credentialsId: 'github', url: 'https://github.com/kenchedda/react-nodejs-CICD.git', branch: 'main'
           container('build') {
                 stage('Build a React Webapp') {
                     sh 'CI=false npm run build'             
