@@ -37,7 +37,7 @@ spec:
           container('build') {
                 stage('Build Image') {
                     docker.withRegistry( 'https://registry.hub.docker.com', 'docker' ) {
-                    def customImage = docker.build("dpthub/eos-react-webapp:latest")
+                    def customImage = docker.build("kenappiah/eos-react-webapp:latest")
                     customImage.push()             
                     }
                 }
