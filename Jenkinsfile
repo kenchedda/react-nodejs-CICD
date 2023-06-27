@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
   - name: build
-    image: kenappiah/buildagent:latest
+    image: kenappiah/buildagent:latest2
     command:
     - cat
     tty: true
