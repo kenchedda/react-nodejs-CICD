@@ -32,7 +32,7 @@ pipeline {
         stage ('Docker Build'){
           steps {
                 script {
-                    withCredentials([string(credentialsId: 'docker', variable: 'docker_hub_cred')]){
+                    docker.withRegistry('https://registry.docker.io', 'docker'){
                     def customImage = docker.build("kenappiah/eoswebapp")
                     customImage.push()             
                     }
