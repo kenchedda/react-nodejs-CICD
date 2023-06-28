@@ -42,7 +42,7 @@ pipeline {
         steps {
             script {
                echo '<--------------- Docker Publish Started --------------->'  
-                docker.withRegistry(registry, 'docker'){
+                docker.withRegistry('https://registry.hub.docker.com', 'docker'){
                     app.push()
                 }    
                echo '<--------------- Docker Publish Ended --------------->'  
