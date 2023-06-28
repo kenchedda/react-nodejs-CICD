@@ -11,7 +11,7 @@ spec:
   containers:
   
   - name: build
-    image: kenappiah/agentbuild:4
+    image: docker:24.0.2-dind-rootless
     command:
     - cat
     tty: true
