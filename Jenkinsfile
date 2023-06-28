@@ -32,8 +32,8 @@ pipeline {
         stage ('Docker Build'){
           steps {
                 script {
-                    docker.withRegistry( 'https://registry.hub.docker.com', 'docker' ) {
-                    def customImage = docker.build("dpthub/eos-react-webapp:latest")
+                    withCredentials([string(credentialsId: 'docker', variable: 'docker_hub_cred')]){
+                    def customImage = docker.build("kenappiah/eoswebapp")
                     customImage.push()             
                     }
                 }
