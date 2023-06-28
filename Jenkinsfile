@@ -33,7 +33,7 @@ pipeline {
           steps {
                 script {
                     withCredentials([string(credentialsId: 'docker', variable: 'docker_hub_cred')]){
-                    def customImage = docker.build("kenappiah/eos-webapp:latest")
+                    def customImage = docker.build('kenappiah/eos-webapp')
                     customImage.push()             
                     }
                 }
