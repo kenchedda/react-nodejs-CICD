@@ -9,8 +9,9 @@ metadata:
     sidecar.istio.io/inject: "false"
 spec:
   containers:
+  
   - name: build
-    image: kenappiah/agentbuild:latest
+    image: kenappiah/agentbuild:4
     command:
     - cat
     tty: true
@@ -27,6 +28,16 @@ spec:
 
         stage ('Checkout SCM'){
           git credentialsId: 'github', url: 'https://github.com/kenchedda/react-nodejs-CICD.git', branch: 'main'
+        }
+         stage ('Docker Build'){
+          container('build') {
+                stage('Build Image') {
+                    docker.withRegistry( 'https://registry.hub.docker.com', 'docker' ) {
+                    def customImage = docker.build("kenappiah/eos-react-webapp:latest")
+                    customImage.push()             
+                    }
+                }
+            }
         }
          stage ('Docker Build'){
           container('build') {
