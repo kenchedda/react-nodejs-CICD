@@ -29,18 +29,16 @@ pipeline {
         
         
         
-         stage ('Docker Build'){
-         
-                steps {
-                  script {
-                    withCredentials([string(credentialsId: 'docker', variable: 'docker_hub_cred')])  {
-                    def customImage = docker.build("kenappiah/eos-react-webappt")
+         stage('Build Image') {
+                  steps {
+                    script {
+                    withCredentials([string(credentialsId: 'docker', variable: 'docker_hub_cred')]) {
+                    def customImage = docker.build("kenappiah/eos-webapp")
                     customImage.push()             
                     }
                 }
                 }
-            }
-        
+                }
          
         stage ('Helm Chart') {
           steps{
