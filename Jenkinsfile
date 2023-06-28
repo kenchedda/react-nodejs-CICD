@@ -8,6 +8,7 @@ metadata:
   annotations:
     sidecar.istio.io/inject: "false"
 spec:
+  serviceAccountName: jenkins-agent-sa
   containers:
   
   - name: build
