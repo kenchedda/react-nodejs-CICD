@@ -6,7 +6,7 @@ pipeline {
     }
     }
 
-       tools {nodejs}
+    
     
     
     stages {
@@ -21,7 +21,9 @@ pipeline {
         stage ('npm build') {
           steps {
             script {
+              sh 'npm install'
               sh 'CI=false npm run build'
+              
             }
           }
         }
