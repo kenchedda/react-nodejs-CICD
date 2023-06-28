@@ -12,15 +12,13 @@ pipeline {
         stage ('Checkout SCM'){
           steps {
           git credentialsId: 'github', url: 'https://github.com/kenchedda/react-nodejs-CICD.git', branch: 'main'
-           stage ('npm build'){
-          steps {
-            script {
+          
                   sh " npm run build"
         }
         }
-         }
-        }
-        }
+         
+        
+        
         
          stage ('Docker Build'){
          
