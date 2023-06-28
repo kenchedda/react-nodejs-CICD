@@ -29,17 +29,26 @@ pipeline {
         
         
         
-        stage ('Docker Build'){
-          steps {
-                script {
-                    withCredentials([string(credentialsId: 'docker', variable: 'docker_hub_cred')]){
-                    def customImage = docker.build('kenappiah/eos-webapp')
-                    customImage.push()             
-                    }
-                }
+         stage(" Docker Build ") {
+      steps {
+        script {
+           echo '<--------------- Docker Build Started --------------->'
+           app = docker.build(kenappiah/eos-webapp:latest)
+           echo '<--------------- Docker Build Ends --------------->'
+        }
+      }
+    }
+    stage (" Docker Publish "){
+        steps {
+            script {
+               echo '<--------------- Docker Publish Started --------------->'  
+                docker.withRegistry(registry, 'docker'){
+                    app.push()
+                }    
+               echo '<--------------- Docker Publish Ended --------------->'  
             }
         }
-         
+    } 
         stage ('Helm Chart') {
           steps{
             script {
