@@ -18,9 +18,13 @@ spec:
     volumeMounts:
     - name: dockersock
       mountPath: /var/run/docker.sock
+    securityContext:
+      privileged: true 
   volumes:
   - name: dockersock
-    emptyDir: {}
+    hostPath:
+      path: /var/run/docker.sock
+      type: File
 """
 ) {
     node (label) {
