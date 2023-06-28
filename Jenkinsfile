@@ -7,7 +7,7 @@ pipeline {
     }
 
     
-    
+    tools {nodejs 'nodejs-16'}
     
     stages {
 
