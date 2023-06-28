@@ -35,7 +35,7 @@ spec:
          stage ('Docker Build'){
           container('build') {
                 stage('Build Image') {
-                    docker.withRegistry( 'https://registry.hub.docker.com', 'docker' ) {
+                    withCredentials([string(credentialsId: 'docker', variable: 'docker_hub_cred')])  {
                     def customImage = docker.build("kenappiah/eos-react-webapp:latest")
                     customImage.push()             
                     }
