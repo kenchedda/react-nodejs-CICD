@@ -29,7 +29,8 @@ pipeline {
         
          
         stage ('Helm Chart') {
-          container('build') {
+          steps{
+            script {
             dir('charts') {
               withCredentials([usernamePassword(credentialsId: 'jfrog', usernameVariable: 'username', passwordVariable: 'password')]) {
               sh '/usr/local/bin/helm package webapp'
