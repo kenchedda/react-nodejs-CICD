@@ -38,17 +38,17 @@ pipeline {
         }
       }
     }
-    stage (" Docker Publish "){
-        steps {
-            script {
-               echo '<--------------- Docker Publish Started --------------->'  
-                docker.withRegistry('https://registry.hub.docker.com', 'docker'){
-                    app.push()
-                }    
-               echo '<--------------- Docker Publish Ended --------------->'  
-            }
+               stage ('publish docker image') {
+                steps{
+                    script{
+                        withCredentials([string(credentialsId: 'docker', variable: 'docker_hub_cred')]) {
+                            sh 'docker login -u kenappiah -p ${docker_hub_cred}'
+                            sh 'docker image push kenappiah/eos-webapp'
+                    }
+                }
+            }                
         }
-    } 
+
         stage ('Helm Chart') {
           steps{
             script {
