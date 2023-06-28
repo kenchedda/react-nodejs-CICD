@@ -1,23 +1,30 @@
 pipeline {
     
     agent {
+      node{
         label "build"
     }
+    }
 
-
+       
+    tools {nodejs 'nodejs-16'}
     
     stages {
 
 
         stage ('Checkout SCM'){
           steps {
-          git credentialsId: 'github', url: 'https://github.com/kenchedda/react-nodejs-CICD.git', branch: 'main'
-          
-                  sh " npm run build"
+          git credentialsId: 'github', url: 'https://github.com/kenchedda/react-nodejs-CICD.git', branch: 'main'     
         }
         }
          
-        
+        stage ('npm build') {
+          steps {
+            script {
+              sh 'CI=false npm run build'
+            }
+          }
+        }
         
         
          stage ('Docker Build'){
