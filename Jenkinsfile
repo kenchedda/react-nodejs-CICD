@@ -33,7 +33,7 @@ pipeline {
       steps {
         script {
            echo '<--------------- Docker Build Started --------------->'
-           app = docker.build(kenappiah/eos-webapp:latest)
+           app = docker.build(kenappiah/eos-webapp)
            echo '<--------------- Docker Build Ends --------------->'
         }
       }
