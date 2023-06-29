@@ -55,7 +55,7 @@ pipeline {
             dir('charts') {
               withCredentials([usernamePassword(credentialsId: 'jfrog', usernameVariable: 'username', passwordVariable: 'password')]) {
               sh '/usr/local/bin/helm package webapp'
-              sh '/usr/local/bin/helm push webapp-1.0.tgz https://kenappiah.jfrog.io/artifactory/ken-helm-helm-local/ --username $username --password $password'
+               sh 'curl -u$username:$password  -T /home/ec2-user/workspace/job/charts/webapp-1.0.tgz "https://kenappiah.jfrog.io/artifactory/default-helm/webapp-1.0.tgz"'
               }
             
           }
